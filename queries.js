@@ -1,5 +1,5 @@
 //Connecting to the posgres database on local environment
-const Pool = requrie('pg').Pool //connection pooler for the postgres database
+const Pool = require('pg').Pool //connection pooler for the postgres database
 const pool = new Pool({
     user: 'willieluong',
     host: 'localhost',
@@ -13,6 +13,7 @@ const getUsers = (request, response) => {
     //command: getting all information from the database by ID by the ascending ID order
     pool.query('SELECT * FROM users ORDER BY id ASC', (error, result) => {
         if(error){
+            response.status(401).send('Internal Error')
             throw error
         }
         response.status(200).json(result.rows);
@@ -25,6 +26,7 @@ const getUserByThisID = (request, response) => {
 
     pool.query('SELECT * FROM users WHERE id=$1', [id], (error, result) => {
         if(error){
+            response.status(401).send('Internal Error')
             //error handling: 
             throw error
         }
@@ -39,6 +41,7 @@ const createUser = (request, response) => {
 
     pool.query('INSERT INTO users(name, email, password, type) VALUES ($1, $2, $3, $4)', [name, email, password, type], (error, result) => {
         if(error){
+            response.status(401).send('Internal Error')
             throw error
         }
         
@@ -56,6 +59,7 @@ const updateUser = (request, response) => {
         'UPDATE users SET name = $1, email = $2 WHERE id = $3',
         [name, email, id], (error, result) => {
             if(error){
+                response.status(401).send('Internal Error')
                 throw error
             }
             response.status(200).send(`User modified with ID: ${id}`)
@@ -69,6 +73,7 @@ const deleteUser = (request, response) => {
   
     pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
       if (error) {
+        response.status(401).send('Internal Error')
         throw error
       }
       response.status(200).send(`User deleted with ID: ${id}`)
