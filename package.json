@@ -1,0 +1,27 @@
+{
+  "name": "Express-REST-API",
+  "version": "1.0.0",
+  "description": "Create a Restful api with Express.js to connect and perform CRUD operations on a PostGres table.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WillLuong97/Express-REST-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WillLuong97/Express-REST-API/issues"
+  },
+  "homepage": "https://github.com/WillLuong97/Express-REST-API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
